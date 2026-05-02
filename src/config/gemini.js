@@ -1,50 +1,75 @@
 
+export default async function runChat(prompt) {
+  try {
+    const res = await fetch(`http://localhost:4000/chat`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ prompt }),
+    });
 
-// const API_KEY= "AIzaSyCdfXu7rTcfQyraJ6EnhV0FwSuKFqaMFqc";
+    const data = await res.json();
 
-// import { GoogleGenerativeAI } from "@google/generative-ai";
+    if (!res.ok) {
+      throw new Error(data.error || "Backend error");
+    }
 
-// const genAI = new GoogleGenerativeAI("AIzaSyB6tJSA2erxnapl3mc8hbUGVFPhIeHB_wI");
+    return data.text;
+  } catch (err) {
+    console.error("Frontend fetch error:", err);
+    return "⚠️ Gemini backend not responding.";
+  }
+}
 
-// const model = genAI.getGenerativeModel({
-//   model: "models/gemini-1.5-flash",
-//   apiVersion: "v1",
-// });
+
+// const API_URL = process.env.REACT_APP_API_URL;
 
 // export default async function runChat(prompt) {
-//   const result = await model.generateContent({
-//     contents: [
-//       {
-//         role: "user",
-//         parts: [{ text: prompt }],
+//   try {
+//     const res = await fetch(`${API_URL}/chat`, {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "application/json",
 //       },
-//     ],
-//   });
+//       body: JSON.stringify({ prompt }),
+//     });
 
-//   return result.response.text();
+//     const data = await res.json();
+
+//     if (!res.ok) {
+//       throw new Error(data.error || "Backend error");
+//     }
+
+//     return data.text;
+//   } catch (err) {
+//     console.error("Frontend fetch error:", err);
+//     return "⚠️ Gemini backend not responding.";
+//   }
 // }
 
 
-export default async function runChat(prompt) {
-    try {
-      const res = await fetch("http://127.0.0.1:8080/chat", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ prompt })
-      });
-  
-      const data = await res.json();
-  
-      if (!res.ok) {
-        throw new Error(data.error || "Backend error");
-      }
-  
-      return data.text;
-    } catch (err) {
-      console.error("Frontend fetch error:", err);
-      return "⚠️ Gemini backend not responding.";
-    }
-  }
-  
+// const API_URL = process.env.REACT_APP_API_URL;
+
+// export default async function runChat(prompt) {
+//   try {
+//     const res = await fetch(`${API_URL}/chat`, {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//       body: JSON.stringify({ prompt }),
+//     });
+
+//     const data = await res.json();
+
+//     if (!res.ok) {
+//       throw new Error(data.error || "Backend error");
+//     }
+
+//     return data.text;
+//   } catch (err) {
+//     console.error("Frontend fetch error:", err);
+//     return "⚠️ Gemini backend not responding.";
+//   }
+// }

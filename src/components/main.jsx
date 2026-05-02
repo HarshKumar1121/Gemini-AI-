@@ -251,18 +251,20 @@ export default function Main() {
       </div>
 
       <div className="main-bottom">
-        <div className="search-box">
-          <input
-            value={input}
-            onChange={(e) => setinput(e.target.value)}
-            placeholder="Enter a prompt here"
-          />
-          <div>
-            <img src={assets.gallery_icon} alt="" />
-            <img src={assets.mic_icon} alt="" />
-            {input && (
-              <img src={assets.send_icon} alt="" onClick={() => onSent()} />
-            )}
+        <div className="search-box-container">
+          <div className="search-box">
+            <input
+              value={input}
+              onChange={(e) => setinput(e.target.value)}
+              placeholder="Enter a prompt here"
+            />
+            <div>
+              <img src={assets.gallery_icon} alt="" />
+              <img src={assets.mic_icon} alt="" />
+              {input && (
+                <img src={assets.send_icon} alt="" onClick={() => onSent()} />
+              )}
+            </div>
           </div>
         </div>
 

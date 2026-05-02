@@ -1,408 +1,240 @@
 .main {
-    flex: 1;
-    min-height: 100vh;
-    padding-bottom: 15vh;
-    position: relative;
-    width:100
+  flex: 1;
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 .main .nav {
-    display: flex;
-    align-items: center;
-    padding: 20px;
-    justify-content: space-between;
-    font-size: 22px;
-    color: #585858;
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  justify-content: space-between;
+  font-size: 22px;
+  color: #585858;
 }
 
 .main .nav img {
-    width: 40px;
-    border-radius: 50%;
+  width: 40px;
+  border-radius: 50%;
 }
 
 .main-container {
-    max-width: 900px;
-    margin: auto;
-   
+  max-width: 900px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 120px; /* Space for the bottom input */
 }
 
 .main .greet {
-    margin: 50px 0px;
-    font-size: 56px;
-    color: #c4c7c5;
-    font-weight: 500;
-    padding: 20px;
+  margin: 30px 0;
+  font-size: clamp(32px, 5vw, 56px);
+  color: #c4c7c5;
+  font-weight: 500;
+  line-height: 1.2;
 }
 
 .main .greet span {
-    background: linear-gradient(16deg, #4b90ff, #ff5546);
-    -webkit-background-clip: text;
-    background-clip: text;        
-    -webkit-text-fill-color: transparent;
-    color: transparent;            
+  background: linear-gradient(16deg, #4b90ff, #ff5546);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-
-.main .cards{
-    display:grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    gap:15px;
-    padding: 20px;
-    
-
+.main .cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 15px;
+  margin-top: 20px;
 }
- .main .card{
-    height:200px;
-    padding:15px;
-    background-color: #f0f4f9;
-    border-radius: 10px;
-    position: relative;
-    cursor: pointer;
 
- }
+.main .card {
+  height: 200px;
+  padding: 15px;
+  background-color: #f0f4f9;
+  border-radius: 12px;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
 
- .main .card img{
-    width:35px;
-    padding:5px;
-    position: absolute;
-    background-color: white;
-    border-radius: 20px;
-    bottom: 10px;
-    right:10px ;
- }
+.main .card:hover {
+  background-color: #dfe4ea;
+  transform: translateY(-5px);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
 
- .main .card .p{
-    color:#585858;
-    font-size:17px;
+.main .card p {
+  color: #585858;
+  font-size: 16px;
+  line-height: 1.4;
+}
 
- }
+.main .card img {
+  width: 36px;
+  padding: 6px;
+  background-color: white;
+  border-radius: 50%;
+  align-self: flex-end;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
 
- .main .card:hover{
-    background-color: #dfe4ea;
- }
+.result {
+  max-height: 70vh;
+  overflow-y: auto;
+  margin-top: 30px;
+  padding: 0 20px;
+}
 
- .main-bottom{
+.result::-webkit-scrollbar {
+  display: none;
+}
 
-position: absolute;
-bottom: 0;
-width: 100%;
-max-width: 900px;
-padding: 0px 20px; 
-margin: 50px 200px;
+.result-title {
+  margin: 40px 0;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
 
+.result-title img {
+  width: 40px;
+  border-radius: 50%;
+}
 
- }
+.result-data {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
 
- .search-box{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap:20px;
-    background-color: #f0f4f9;
-    padding: 10px 20px;
-    border-radius: 50px;
+.result-data img {
+  width: 40px;
+  border-radius: 50%;
+}
 
- }
+.result-data p {
+  font-size: 17px;
+  line-height: 1.8;
+  color: #333;
+}
 
- .search-box img{
-    width:24px;
-    cursor: pointer;
- }
+.loader {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 10px;
+}
 
- .search-box input{
-    flex:1;
-    background: transparent;
-    border: none;
-    outline: none;
-    padding: 8px;
-    font-size: 18px;
+.loader hr {
+  height: 20px;
+  border-radius: 4px;
+  border: none;
+  background: linear-gradient(to right, #9ed7ff, #ffffff, #9ed7ff);
+  background-size: 800px 50px;
+  animation: loader 1.5s infinite linear;
+}
 
- }
+@keyframes loader {
+  0% { background-position: -800px 0; }
+  100% { background-position: 800px 0; }
+}
 
- .search-box div{
-    display: flex;
-    align-items: center;
-    gap:15px;
- }
+.main-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 0 20px 20px 20px;
+  background: linear-gradient(to top, white 85%, transparent);
+}
 
- .main .bottom-info{
-    font-size: 13px;
-    margin: 15px auto;
-    text-align: center;
-    font-weight: 300;
+.search-box-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
 
- }
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background-color: #f0f4f9;
+  padding: 12px 20px;
+  border-radius: 50px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+  transition: box-shadow 0.3s, background-color 0.3s;
+}
 
- .result{
-    padding:0px 5%;
-    max-height:70vh;
-    overflow-y: scroll;
- }
+.search-box:focus-within {
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  background-color: #eef2f6; /* Slightly different explicitly for focus */
+}
 
- .result::-webkit-scrollbar{
-    display: none;
- }
+.search-box input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  padding: 5px 0;
+}
 
- .result-title{
-    margin:40px 0px;
-    display: flex;
-    align-items: center;
-    gap: 20px;
- }
+.search-box img {
+  width: 24px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
 
- .result-data{
-    display: flex;
-    gap: 20px;
-    align-items: start;
- }
+.search-box img:hover {
+  transform: scale(1.1);
+}
 
+.search-box div {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
 
- .loader{
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-    gap:10px;
+.main .bottom-info {
+  font-size: 13px;
+  margin-top: 15px;
+  text-align: center;
+  color: #888;
+}
 
- }
-
- .loader hr{
-    border-radius: 4px;
-    border:none;
-    background-color: #f6f7f8;
-    background: linear-gradient(to right,#9ed7ff,#ffffff,#9ed7ff);
-    height: 20px;
-    background-size: 800px 50px;
-    animation: loader 3s infinite linear;
- }
-
- @keyframes loader{
-    0%{
-background-position: -800px 0px;
-    }
-    100%{
-        background-position: 800px 0px;
-            }
-        
-
- }
-
- .result-data p{
-    font-size: 17px;
-    font-weight: 300px;
-    line-height: 1.8;
-
- }
-
- @media(max-width:600px){
-    .main-bottom input{
-        flex:none;
-        width: 150px;
-    }
-    .main-bottom img{
-        width: 20px;
-    }
-
-    .search-box{
-        padding:5px 10px;
-    }
-
-    .search-box dic{
-        gap:5px;
-    }
-
-
-
- }
-/* 
- .main {
-    flex: 1;
-    min-height: 100vh;
-    padding-bottom: 15vh;
-    position: relative;
-  }
-  
+@media (max-width: 600px) {
   .main .nav {
-    display: flex;
-    align-items: center;
-    padding: 20px;
-    justify-content: space-between;
-    font-size: 22px;
-    color: #585858;
-  }
-  
-  .main .nav img {
-    width: 40px;
-    border-radius: 50%;
-  }
-  
-  .main-container {
-    max-width: 900px;
-    margin: auto;
+    padding: 15px;
+    font-size: 20px;
   }
   
   .main .greet {
-    margin: 50px 0px;
-    font-size: 56px;
-    color: #c4c7c5;
-    font-weight: 500;
-    padding: 20px;
+    font-size: 32px;
+    margin: 30px 0;
   }
-  
-  .main .greet span {
-    background: linear-gradient(16deg, #4b90ff, #ff5546);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    color: transparent;
-  }
-  
+
   .main .cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    gap: 15px;
-    padding: 20px;
+    grid-template-columns: repeat(1, 1fr);
   }
   
-  .main .card {
-    height: 200px;
-    padding: 15px;
-    background-color: #f0f4f9;
-    border-radius: 10px;
-    position: relative;
-    cursor: pointer;
+  .main-container {
+    padding: 0 15px;
+    padding-bottom: 110px;
   }
-  
-  .main .card img {
-    width: 35px;
-    padding: 5px;
-    position: absolute;
-    background-color: white;
-    border-radius: 20px;
-    bottom: 10px;
-    right: 10px;
-  }
-  
-  .main .card p {
-    color: #585858;
-    font-size: 17px;
-  }
-  
-  .main .card:hover {
-    background-color: #dfe4ea;
-  }
-  
+
   .main-bottom {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    max-width: 900px;
-    padding: 0px 20px;
-    margin: 50px 200px;
+    padding: 0 10px 10px 10px;
   }
   
   .search-box {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
-    background-color: #f0f4f9;
-    padding: 10px 20px;
-    border-radius: 50px;
+    padding: 10px 15px;
   }
-  
-  .search-box img {
-    width: 24px;
-    cursor: pointer;
-  }
-  
-  .search-box input {
-    flex: 1;
-    background: transparent;
-    border: none;
-    outline: none;
-    padding: 8px;
-    font-size: 18px;
-  }
-  
-  .search-box div {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-  }
-  
-  .main .bottom-info {
-    font-size: 13px;
-    margin: 15px auto;
-    text-align: center;
-    font-weight: 300;
-  }
-  
-  .result {
-    padding: 0px 5%;
-    max-height: 70vh;
-    overflow-y: scroll;
-  }
-  
-  .result::-webkit-scrollbar {
-    display: none;
-  }
-  
-  .result-title {
-    margin: 40px 0px;
-    display: flex;
-    align-items: center;
-    gap: 20px;
-  }
-  
-  .result-data {
-    display: flex;
-    gap: 20px;
-    align-items: start;
-  }
-  
-  .loader {
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-    gap: 10px;
-  }
-  
-  .loader hr {
-    border-radius: 4px;
-    border: none;
-    background: linear-gradient(to right, #9ed7ff, #ffffff, #9ed7ff);
-    height: 20px;
-    background-size: 800px 50px;
-    animation: loader 3s infinite linear;
-  }
-  
-  @keyframes loader {
-    0% {
-      background-position: -800px 0px;
-    }
-    100% {
-      background-position: 800px 0px;
-    }
-  }
-  
-  .result-data p {
-    font-size: 17px;
-    font-weight: 300;
-    line-height: 1.8;
-  }
-  
-  @media (max-width: 600px) {
-    .main-bottom input {
-      flex: none;
-      width: 150px;
-    }
-  
-    .main-bottom img {
-      width: 20px;
-    }
-  
-    .search-box {
-      padding: 5px 10px;
-    }
-  }
-   */
+}

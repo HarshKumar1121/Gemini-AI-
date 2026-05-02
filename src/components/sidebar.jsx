@@ -96,7 +96,7 @@ export default function Sidebar() {
   };
 
   return (
-    <div className="sidebar">
+    <div className={`sidebar ${extend ? "expanded" : ""}`}>
       <div className="top">
         <img
           className="menu"
