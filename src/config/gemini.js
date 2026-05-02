@@ -1,7 +1,8 @@
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:4000";
 
 export default async function runChat(prompt) {
   try {
-    const res = await fetch(`http://localhost:4000/chat`, {
+    const res = await fetch(`${API_URL}/chat`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
